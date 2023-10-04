@@ -1,11 +1,18 @@
+// Function to calculate the minimum cost of connecting ropes
 function calculateMinCost() {
   // Get the input string and split it into an array of rope lengths
   const inputString = document.getElementById("rope-lengths").value;
   const ropeLengths = inputString.split(',').map(Number);
 
+  // Ensure there are at least two ropes to combine
+  if (ropeLengths.length < 2) {
+    alert("Please enter at least two rope lengths.");
+    return;
+  }
+
   // Create a min-heap to store the rope lengths
   const minHeap = new MinHeap();
-  
+
   // Insert all rope lengths into the min-heap
   for (let i = 0; i < ropeLengths.length; i++) {
     minHeap.insert(ropeLengths[i]);
@@ -34,7 +41,7 @@ function calculateMinCost() {
   resultDiv.textContent = `Minimum Cost: ${totalCost}`;
 }
 
-// MinHeap class implementation
+// MinHeap class implementation (used to efficiently find minimum values)
 class MinHeap {
   constructor() {
     this.heap = [];
